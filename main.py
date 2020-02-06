@@ -112,6 +112,9 @@ def image_handler(message):
             output_stream.seek(0)
             bot.send_photo(chat_id, photo=output_stream)
 
+            if message.chat.id in style_transfers_dict:
+                del style_transfers_dict[message.chat.id]
+
         else:
             style_transfers_dict[chat_id].content_image = bot.download_file(image_file.file_path)
 
